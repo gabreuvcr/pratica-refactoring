@@ -45,7 +45,7 @@ public class Customer {
 
       //show figures for this rental
       result += "\t" + each.getMovie().getTitle() + "\t" +
-        String.valueOf(each.getCharge()) + "\n";
+              String.valueOf(each.getCharge()) + "\n";
     }
 
     //add footer lines
@@ -53,5 +53,24 @@ public class Customer {
     result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) +
             " frequent renter points";
     return result;
+  }
+
+  public String htmlStatement() {
+    Enumeration rentals = _rentals.elements();
+    String result = "<H1>Rental Record for <EM>" + getName() + "</EM></H1><P>\n";
+    while (rentals.hasMoreElements()) {
+      Rental each = (Rental) rentals.nextElement();
+
+      //show figures for this rental
+      result += each.getMovie().getTitle() + ": " +
+              String.valueOf(each.getCharge()) + "<BR>\n";
+    }
+
+    //add footer lines
+    result += "<P>You owe <EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+    result += "On this rental you earned <EM>" + 
+            String.valueOf(getTotalFrequentRenterPoints()) +
+            "</EM> frequent renter points<P>";
+    return result; 
   }
 }

@@ -12,5 +12,7 @@ class Main {
     jao.addRental(rentalSherlock);
 
     System.out.println(jao.statement());
+    System.out.println("\n");
+    System.out.println(jao.htmlStatement());
   }
 }
